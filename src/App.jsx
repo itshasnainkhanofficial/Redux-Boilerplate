@@ -1,6 +1,5 @@
-import { useState } from "react";
-import "./App.css";
-import { Provider } from 'react-redux'
+
+// import { Provider } from 'react-redux'
 // 1.
 // import store from './components/1-SimpleRedux/store'
 // import SimpleRedux from './components/1-SimpleRedux/SimpleReducer'
@@ -24,20 +23,27 @@ import { Provider } from 'react-redux'
 // import AsyncOperations from './components/5-AsyncOperations/AsyncOperations'
 // import store from './components/5-AsyncOperations/store'
 // 6.
-import ToolKitWithThunk from './components/6-ToolKitWithThunk/ToolKitWithThunk'
-import store from './components/6-ToolKitWithThunk/store'
+// import ToolKitWithThunk from './components/6-ToolKitWithThunk/ToolKitWithThunk'
+// import store from './components/6-ToolKitWithThunk/store'
 
 // for persist laptopqty
-import { persistStore } from 'redux-persist';
-import { PersistGate } from 'redux-persist/integration/react'
+// import { persistStore } from 'redux-persist';
+// import { PersistGate } from 'redux-persist/integration/react'
+// let persistor = persistStore(store);
 
-let persistor = persistStore(store);
+// for context
+// import {ContextProvider} from './components/7-ReactContext/Context'
+// import CompA from "./components/7-ReactContext/CompA";
+
+import {ContextProvider} from './components/8-ContextWithHook/Context'
+import CompA from "./components/8-ContextWithHook/CompA";
+import { useState } from "react";
 
 function App() {
-
+  const [name, setName] = useState("Hasnain");
   return (
     <div className="App">
-      <Provider store={store}>
+      {/* <Provider store={store}> */}
         
         {/* <SimpleRedux /> */}
         {/* <SimpleReducerWithPayload /> */}
@@ -54,12 +60,24 @@ function App() {
           {/* same componenents */}
           {/* <ToolKitWithThunk /> */}
 
-          <PersistGate persistor={persistor}>
+          {/* <PersistGate persistor={persistor}>
             <ToolKitWithThunk />
-          </PersistGate>
+          </PersistGate> */}
           {/* same componenents */}
+
+
           
-      </Provider>
+      {/* </Provider> */}
+
+      {/* for React Context Api */}
+      {/* <ContextProvider value="Hasnain">
+          <CompA/>
+      </ContextProvider> */}
+
+      <ContextProvider value={{name, setName}}>
+          <CompA/>
+      </ContextProvider>
+      
     </div>
   );
 }
